@@ -4,13 +4,14 @@
 
   <h2>REEL: Same Frames, Different Answers and Different Costs</h2>
 
-  <p><strong>WACV 2027 · Datasets &amp; Evaluation Track</strong></p>
+  <p>
+    <strong>Xin Liang<sup>1</sup></strong>&nbsp;&nbsp;&nbsp;
+    <strong>Jiangpeng He<sup>1</sup></strong>
+  </p>
 
-  <!--
-  Add the camera-ready author list and affiliations here once confirmed.
-  Use linked names, affiliation superscripts, and an equal-contribution note
-  when applicable, following the structure used by the SlideGen README.
-  -->
+  <p><sup>1</sup> Indiana University</p>
+
+  <p><strong>WACV 2027 · Datasets &amp; Evaluation Track</strong></p>
 
   <p>
     <img src="https://img.shields.io/badge/project%20page-public-1e4f9a?style=flat-square" alt="Public project page">
@@ -102,7 +103,8 @@ public. The project-page repository is already public.
 - [ ] Complete third-party license and attribution review.
 - [ ] Run a full-history secret scanner such as Gitleaks.
 - [ ] Add the approved open-source license.
-- [ ] Add final authors, affiliations, public paper, and BibTeX.
+- [x] Add final authors and affiliations to the project page and README.
+- [ ] Add the public paper and final BibTeX.
 - [ ] Verify every README and project-page number against the camera-ready paper.
 
 ## Preview the project page
@@ -165,9 +167,8 @@ REEL-code/
 
 ## Citation
 
-The final BibTeX entry will be added after the camera-ready author order and
-proceedings metadata are confirmed. Do not cite or redistribute the
-confidential review manuscript.
+The final BibTeX entry will be added after the proceedings metadata are
+confirmed. Do not cite or redistribute the confidential review manuscript.
 
 ## License
 

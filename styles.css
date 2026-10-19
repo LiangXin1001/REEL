@@ -120,14 +120,29 @@ a:focus-visible, button:focus-visible {
   text-wrap: balance;
 }
 .paper-authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1.6rem;
   max-width: 780px;
   margin: 30px auto 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 1.02rem;
+  color: #fff;
+  font-size: clamp(1.06rem, 1.8vw, 1.22rem);
+  font-weight: 600;
   line-height: 1.55;
 }
+.paper-authors sup,
+.paper-affiliations sup {
+  margin-left: 0.12em;
+  font-size: 0.67em;
+}
+.paper-affiliations {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.96rem;
+}
 .paper-venue {
-  margin: 20px 0 0;
+  margin: 24px 0 0;
   font-size: clamp(1.08rem, 2vw, 1.35rem);
   font-weight: 700;
   letter-spacing: 0;
