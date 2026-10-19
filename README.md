@@ -22,12 +22,9 @@
 
 </div>
 
-> [!IMPORTANT]
-> **Public project page, private research code.** This repository contains the
-> public website only. The code repository remains private until a fresh
-> environment can install the package, run the documented tests, and complete
-> an end-to-end GPU smoke test on legally obtained data. The current checks are
-> useful staging evidence, not a public reproducibility claim.
+> This repository hosts the official project page for REEL. The paper,
+> citation, and reproducibility-checked research code will be released after
+> the camera-ready preparation and validation are complete.
 
 ## Overview
 
