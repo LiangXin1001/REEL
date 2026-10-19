@@ -7,13 +7,14 @@
   <p><strong>WACV 2027 · Datasets &amp; Evaluation Track</strong></p>
 
   <!--
-  Add the camera-ready author list and affiliations here before public release.
+  Add the camera-ready author list and affiliations here once confirmed.
   Use linked names, affiliation superscripts, and an equal-contribution note
   when applicable, following the structure used by the SlideGen README.
   -->
 
   <p>
-    <img src="https://img.shields.io/badge/status-private%20reproducibility%20validation-111111?style=flat-square" alt="Private reproducibility validation">
+    <img src="https://img.shields.io/badge/project%20page-public-1e4f9a?style=flat-square" alt="Public project page">
+    <img src="https://img.shields.io/badge/research%20code-private-111111?style=flat-square" alt="Private research code">
     <img src="https://img.shields.io/badge/CPU%20tests-76%20passed-2ea44f?style=flat-square" alt="76 CPU tests passed">
     <img src="https://img.shields.io/badge/public%20paper-coming%20soon-6e7781?style=flat-square" alt="Public paper coming soon">
   </p>
@@ -21,10 +22,11 @@
 </div>
 
 > [!IMPORTANT]
-> **Private release candidate.** This repository must remain private until a
-> fresh environment can install the package, run the documented tests, and
-> complete an end-to-end GPU smoke test on legally obtained data. The current
-> checks are useful staging evidence, not a public reproducibility claim.
+> **Public project page, private research code.** This repository contains the
+> public website only. The code repository remains private until a fresh
+> environment can install the package, run the documented tests, and complete
+> an end-to-end GPU smoke test on legally obtained data. The current checks are
+> useful staging evidence, not a public reproducibility claim.
 
 ## Overview
 
@@ -70,7 +72,7 @@ workloads. This is a conditional result, not a universal ranking.
 
 | Component | Location | Current status |
 | --- | --- | --- |
-| Project page | This repository | Static page ready for private review |
+| Project page | This repository | Public static website |
 | Research code | [REEL-code](https://github.com/LiangXin1001/REEL-code) | Private whitelist candidate; 76 CPU tests pass |
 | Public paper | Not included | Camera-ready or preprint PDF pending |
 | Data and videos | Not redistributed | Access and license instructions pending |
@@ -82,14 +84,15 @@ history.
 
 ## Reproducibility gate
 
-This checklist defines when the repository can be made public.
+This checklist defines when the separate research-code repository can be made
+public. The project-page repository is already public.
 
 - [x] Start from a new, clean Git history.
 - [x] Copy research code from an explicit whitelist.
 - [x] Pass 76 selected CPU tests.
 - [x] Remove symbolic links and files larger than 10 MB from the code candidate.
 - [x] Run first-pass scans for personal cluster paths and common secret formats.
-- [ ] Merge the approved code candidate into the final public repository.
+- [ ] Merge the approved code candidate into the approved public code repository.
 - [ ] Install successfully in a fresh environment using only documented steps.
 - [ ] Run the full CPU test suite from that fresh environment.
 - [ ] Add a small, legally redistributable smoke-test fixture.
@@ -107,7 +110,7 @@ This checklist defines when the repository can be made public.
 The current repository is a buildless static website:
 
 ~~~bash
-git clone git@github.com:LiangXin1001/REEL.git
+git clone https://github.com/LiangXin1001/REEL.git
 cd REEL
 python -m http.server 8000
 ~~~
@@ -144,7 +147,7 @@ installation and GPU inference test are still pending.
 REEL/
 ├── assets/       # Logo, paper figures, and study diagrams
 ├── index.html    # Project-page content
-├── styles.css    # Responsive monochrome styling
+├── styles.css    # Responsive project-page styling
 ├── script.js     # Representation tabs, lightbox, and reveal interactions
 └── README.md     # Release status and reproducibility gate
 ~~~
@@ -169,4 +172,4 @@ confidential review manuscript.
 ## License
 
 No public license has been selected yet. Until an approved license is added,
-the repository remains all rights reserved.
+the website content and research code remain all rights reserved.
