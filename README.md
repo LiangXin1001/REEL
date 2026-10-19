@@ -14,7 +14,9 @@
   <p><strong>WACV 2027 · Datasets &amp; Evaluation Track</strong></p>
 
   <p>
-    <img src="https://img.shields.io/badge/project%20page-public-1e4f9a?style=flat-square" alt="Public project page">
+    <a href="https://liangxin1001.github.io/REEL/">
+      <img src="https://img.shields.io/badge/Project-Website-blue?style=flat-square&amp;logo=googlechrome" alt="Project Website">
+    </a>
     <img src="https://img.shields.io/badge/research%20code-private-111111?style=flat-square" alt="Private research code">
     <img src="https://img.shields.io/badge/CPU%20tests-76%20passed-2ea44f?style=flat-square" alt="76 CPU tests passed">
     <img src="https://img.shields.io/badge/public%20paper-coming%20soon-6e7781?style=flat-square" alt="Public paper coming soon">
