@@ -119,27 +119,6 @@ Then open <http://localhost:8000>.
 This command previews the website only; it does not reproduce the paper
 experiments.
 
-## Validate the current code candidate
-
-Collaborators with access to the private code candidate can run the present
-CPU checks as follows:
-
-~~~bash
-git clone git@github.com:LiangXin1001/REEL-code.git
-cd REEL-code
-python -m pip install -e '.[analysis,dev]'
-PYTHONPATH=src:scripts python -m pytest -q
-~~~
-
-The observed staging result is:
-
-~~~text
-76 passed
-~~~
-
-This result was obtained in the existing research environment. A clean-machine
-installation and GPU inference test are still pending.
-
 ## Repository layout
 
 ~~~text
