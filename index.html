@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="REEL evaluates what long-video reuse saves, which answers it changes, and when saved representations actually reduce GPU work.">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="REEL — Same Frames, Different Answers and Different Costs">
+  <meta property="og:description" content="What should a long-video system save so repeated questions are cheaper without silently changing the answers?">
+  <meta property="og:url" content="https://liangxin1001.github.io/REEL/">
+  <meta property="og:image" content="https://liangxin1001.github.io/REEL/assets/reel-protocol.png">
+  <title>REEL — Same Frames, Different Answers and Different Costs</title>
+  <link rel="canonical" href="https://liangxin1001.github.io/REEL/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav" aria-label="Primary navigation">
+    <a class="wordmark" href="#top" aria-label="REEL home">
+      <span class="wordmark-dot" aria-hidden="true"></span>REEL
+    </a>
+    <nav>
+      <a href="#problem">Problem</a>
+      <a href="#representations">Representations</a>
+      <a href="#findings">Findings</a>
+      <a href="#resources">Resources</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-copy reveal">
+        <div class="venue-pill"><span></span>Accepted at WACV 2027 · Datasets &amp; Evaluation Track</div>
+        <p class="eyebrow">Repeated-query Evaluation of Efficiency in Long-video QA</p>
+        <h1>Same frames.<br><em>Different answers.</em><br>Different costs.</h1>
+        <p class="hero-lede">
+          REEL asks a simple question: when one video must answer many later questions,
+          what should the system save so that reuse is both cheaper and faithful?
+        </p>
+        <div class="hero-actions">
+          <span class="button button-muted" aria-disabled="true">Paper coming soon</span>
+          <span class="button button-muted" aria-disabled="true">Code release in preparation</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-label="One video is observed once, saved in different forms, and reused for many questions">
+        <div class="flow-label">ONE OBSERVATION</div>
+        <div class="frame-ribbon" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="memory-stack">
+          <div class="memory memory-frames"><b>Frames</b><small>reprocess</small></div>
+          <div class="memory memory-text"><b>Text</b><small>portable</small></div>
+          <div class="memory memory-visual"><b>Visual</b><small>skip encoder</small></div>
+          <div class="memory memory-prefix"><b>Prefix</b><small>reuse prefill</small></div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">↓</div>
+        <div class="question-row" aria-hidden="true"><span>Q1</span><span>Q2</span><span>Q3</span><span>…</span></div>
+        <p class="visual-caption">Selection controls what is observed. Representation controls what later questions can recover.</p>
+      </div>
+
+      <div class="metric-rail reveal" aria-label="Study at a glance">
+        <div><strong>6</strong><span>vision-language models</span></div>
+        <div><strong>2</strong><span>main video benchmarks</span></div>
+        <div><strong>4</strong><span>reuse paths compared</span></div>
+        <div class="metric-accent"><strong>21–30%</strong><span>Text–Frames outcomes differ</span></div>
+      </div>
+    </section>
+
+    <section class="section split-section" id="problem">
+      <div class="section-copy reveal">
+        <p class="section-index">01 · THE HIDDEN CHANGE</p>
+        <h2>A stable mean can hide a different set of correct answers.</h2>
+        <p>
+          Text and Frames can report nearly the same average accuracy while disagreeing on
+          which individual questions are correct. Gains and losses cancel in the mean.
+        </p>
+        <div class="callout">
+          <strong>21.1–29.6%</strong>
+          <span>of jointly valid questions change correctness between Text and Frames across the tested model–dataset pairs.</span>
+        </div>
+        <p class="small-note">Visual and Prefix stay much closer to Frames: 0.0–2.3% and 0.3–2.8% differing outcomes, respectively.</p>
+      </div>
+      <figure class="paper-figure reveal">
+        <button class="figure-button" data-lightbox="assets/answer-changes.png" data-title="Per-question correctness changes">
+          <img src="assets/answer-changes.png" alt="Plot showing substantially more differing question outcomes for Text than for Visual or Prefix representations" loading="lazy">
+          <span>Open figure</span>
+        </button>
+        <figcaption>Same selected frames, different saved representations.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section representation-section" id="representations">
+      <div class="section-heading reveal">
+        <p class="section-index">02 · WHAT SURVIVES</p>
+        <h2>Four ways to answer again.</h2>
+        <p>REEL fixes the observed timestamps, then changes only what the system keeps for later questions.</p>
+      </div>
+
+      <div class="representation-lab reveal">
+        <div class="rep-tabs" role="tablist" aria-label="Saved representation">
+          <button class="rep-tab is-active" role="tab" aria-selected="true" data-rep="frames"><span class="rep-swatch swatch-frames"></span>Frames</button>
+          <button class="rep-tab" role="tab" aria-selected="false" data-rep="text"><span class="rep-swatch swatch-text"></span>Text</button>
+          <button class="rep-tab" role="tab" aria-selected="false" data-rep="visual"><span class="rep-swatch swatch-visual"></span>Visual</button>
+          <button class="rep-tab" role="tab" aria-selected="false" data-rep="prefix"><span class="rep-swatch swatch-prefix"></span>Prefix State</button>
+        </div>
+
+        <div class="rep-panel" aria-live="polite">
+          <div>
+            <p class="rep-kicker" id="rep-kicker">Reference path</p>
+            <h3 id="rep-title">Frames reprocess every question.</h3>
+            <p id="rep-description">Keep the selected images and run the complete vision-language path again for each new question.</p>
+          </div>
+          <dl class="rep-facts">
+            <div><dt>Later GPU work</dt><dd id="rep-compute">Highest repeated work</dd></div>
+            <div><dt>Retained payload</dt><dd id="rep-storage">Selected image files</dd></div>
+            <div><dt>Answer relation</dt><dd id="rep-fidelity">Reference</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <figure class="wide-figure reveal">
+        <button class="figure-button" data-lightbox="assets/reel-protocol.png" data-title="Two decisions isolated by two controlled studies">
+          <img src="assets/reel-protocol.png" alt="Diagram separating the saved-representation comparison from the question-aware frame-selection comparison" loading="lazy">
+          <span>Open study map</span>
+        </button>
+      </figure>
+    </section>
+
+    <section class="section findings-section" id="findings">
+      <div class="section-heading reveal">
+        <p class="section-index">03 · WHAT REUSE REALLY SAVES</p>
+        <h2>Compute, storage, and answer fidelity pull in different directions.</h2>
+      </div>
+
+      <div class="finding-grid">
+        <article class="finding-card finding-dark reveal">
+          <span class="finding-number">01</span>
+          <p class="finding-stat">Kilobytes</p>
+          <h3>Text is tiny—but lossy.</h3>
+          <p>Text stores roughly 6.1–8.6 KiB per video, but fails the paper's answer-retention rule on the main workloads.</p>
+        </article>
+        <article class="finding-card finding-prefix reveal">
+          <span class="finding-number">02</span>
+          <p class="finding-stat">1.06–20.97 GiB</p>
+          <h3>Prefix saves GPU work—not space.</h3>
+          <p>Once answer retention is required, Prefix State is the lowest-GPU eligible choice in every tested main workload.</p>
+        </article>
+        <article class="finding-card finding-blue reveal">
+          <span class="finding-number">03</span>
+          <p class="finding-stat">Model-specific</p>
+          <h3>Where the saving comes from changes.</h3>
+          <p>Skipping vision encoding and reusing language-model prefill contribute very different shares across model families.</p>
+        </article>
+      </div>
+
+      <div class="evidence-grid">
+        <figure class="paper-figure reveal">
+          <button class="figure-button" data-lightbox="assets/cost-storage-tradeoff.png" data-title="GPU saving versus retained storage">
+            <img src="assets/cost-storage-tradeoff.png" alt="Scatter plot showing GPU savings and retained bytes for Text, Visual, and Prefix across model families" loading="lazy">
+            <span>Open trade-off plot</span>
+          </button>
+          <figcaption>There is no single free lunch: compactness and reuse sit on different axes.</figcaption>
+        </figure>
+        <figure class="paper-figure reveal">
+          <button class="figure-button" data-lightbox="assets/where-prefix-saves.png" data-title="Where Prefix State saves repeated computation">
+            <img src="assets/where-prefix-saves.png" alt="Stacked bars showing model-specific shares of visual and KV reuse savings" loading="lazy">
+            <span>Open compute breakdown</span>
+          </button>
+          <figcaption>Prefix State's benefit is not mechanically identical across backbones.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section selector-section">
+      <div class="selector-copy reveal">
+        <p class="section-index">04 · SELECT ONCE OR SELECT PER QUESTION?</p>
+        <h2>Question-aware selection is not automatically better.</h2>
+        <p>
+          Selecting frames separately for every question helps on CG-Bench, but not on HD-EPIC—and it repeats selection work each time.
+          REEL therefore evaluates evidence selection separately from memory representation.
+        </p>
+        <div class="selector-stats">
+          <div><strong>+6.2–7.6 pp</strong><span>CG-Bench accuracy</span></div>
+          <div><strong>−0.1–1.5 pp</strong><span>HD-EPIC accuracy</span></div>
+          <div><strong>1.63–5.59×</strong><span>total GPU time</span></div>
+        </div>
+      </div>
+      <figure class="paper-figure reveal">
+        <button class="figure-button" data-lightbox="assets/reuse-over-questions.png" data-title="Amortization and answer preservation">
+          <img src="assets/reuse-over-questions.png" alt="Plots showing that repeated questions amortize construction cost but do not restore omitted evidence" loading="lazy">
+          <span>Open figure</span>
+        </button>
+        <figcaption>More questions dilute one-time construction cost; they do not restore evidence that was discarded.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section protocol-section">
+      <div class="section-heading reveal">
+        <p class="section-index">05 · THE REEL CHECKLIST</p>
+        <h2>Measure reuse with three ledgers, not one headline score.</h2>
+      </div>
+      <ol class="protocol-steps reveal">
+        <li><span>1</span><div><b>Fix the observations.</b><p>Use exactly the same selected frames for every representation.</p></div></li>
+        <li><span>2</span><div><b>Pair every answer.</b><p>Count correct→wrong and wrong→correct changes, not just mean accuracy.</p></div></li>
+        <li><span>3</span><div><b>Track cumulative GPU work.</b><p>Include construction and every later question as the workload grows.</p></div></li>
+        <li><span>4</span><div><b>Count retained bytes.</b><p>Separate computation saved from information stored.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="section scope-section">
+      <div class="scope-title reveal">
+        <p class="section-index">SCOPE</p>
+        <h2>What the result does—and does not—claim.</h2>
+      </div>
+      <div class="scope-grid reveal">
+        <div><b>Supported</b><p>Under the tested models, datasets, frame budgets, and retention checks, Prefix State is the lowest-GPU eligible saved representation.</p></div>
+        <div><b>Not universal</b><p>Different hardware, writers, storage limits, question mixes, or compression methods can change the ranking.</p></div>
+        <div><b>Why REEL matters</b><p>The framework makes those conditional trade-offs visible instead of hiding them behind a single average.</p></div>
+      </div>
+    </section>
+
+    <section class="section resources-section" id="resources">
+      <div class="section-heading reveal">
+        <p class="section-index">RESOURCES</p>
+        <h2>Results now. Paper and reproducible release next.</h2>
+        <p>This public project page presents the accepted paper's main results. The public paper, camera-ready metadata, and audited code link will be added as the release is finalized.</p>
+      </div>
+      <div class="resource-grid reveal">
+        <div class="resource-card resource-pending" aria-disabled="true">
+          <span>PDF</span><b>Public paper</b><small>Camera-ready or preprint PDF coming soon</small>
+        </div>
+        <div class="resource-card resource-pending" aria-disabled="true">
+          <span>CODE</span><b>Code release</b><small>Audited repository coming soon</small>
+        </div>
+        <div class="resource-card resource-pending" aria-disabled="true">
+          <span>CITE</span><b>Paper citation</b><small>Pending final author order and proceedings metadata</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="wordmark" href="#top"><span class="wordmark-dot" aria-hidden="true"></span>REEL</a>
+    <p>Accepted at WACV 2027 · Datasets &amp; Evaluation Track</p>
+    <p class="footer-draft">Public project-page preview · camera-ready metadata pending</p>
+  </footer>
+
+  <dialog class="lightbox" id="figure-dialog">
+    <div class="lightbox-bar">
+      <h2 id="lightbox-title">Figure</h2>
+      <button id="lightbox-close" aria-label="Close figure">×</button>
+    </div>
+    <img id="lightbox-image" alt="">
+  </dialog>
+</body>
+</html>
