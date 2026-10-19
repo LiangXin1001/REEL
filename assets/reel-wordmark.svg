@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="360" viewBox="0 0 1600 360" role="img" aria-labelledby="title desc">
+  <title id="title">REEL</title>
+  <desc id="desc">A circular reel surrounding stacked video frames, followed by the REEL wordmark.</desc>
+  <rect width="1600" height="360" fill="#ffffff"/>
+  <g fill="none" stroke="#0a0a0a" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="180" cy="180" r="142" stroke-width="18"/>
+    <rect x="83" y="85" width="154" height="112" rx="12" fill="#ffffff" stroke-width="13"/>
+    <rect x="108" y="110" width="154" height="112" rx="12" fill="#ffffff" stroke-width="13"/>
+    <rect x="133" y="135" width="154" height="112" rx="12" fill="#ffffff" stroke-width="13"/>
+    <path d="M190 163l48 28-48 28z" fill="#0a0a0a" stroke="none"/>
+  </g>
+  <text x="0" y="0" transform="translate(390 270) scale(1.75 1)" fill="#0a0a0a" font-family="DejaVu Sans, Arial, Helvetica, sans-serif" font-size="242" font-weight="800">REEL</text>
+</svg>
