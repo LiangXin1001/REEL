@@ -9,7 +9,7 @@
   --line-dark: #b8b8b8;
   --blue-deep: #1e3c72;
   --blue-bright: #2a5298;
-  --max: 1120px;
+  --max: 1280px;
   --radius: 14px;
 }
 
@@ -177,7 +177,6 @@ a:focus-visible, button:focus-visible {
   margin: 0 auto;
   padding: 84px 0 72px;
 }
-.lead-figure-copy { max-width: 840px; }
 .eyebrow,
 .section-index,
 .rep-kicker {
@@ -188,7 +187,6 @@ a:focus-visible, button:focus-visible {
   text-transform: uppercase;
 }
 .lead-figure-copy h2 {
-  max-width: 920px;
   margin: 12px 0 24px;
   font-size: clamp(2.6rem, 4.4vw, 4rem);
   font-weight: 730;
@@ -245,7 +243,6 @@ a:focus-visible, button:focus-visible {
   border-top: 1px solid var(--line);
 }
 .section h2 {
-  max-width: 920px;
   margin: 12px 0 24px;
   font-family: inherit;
   font-size: clamp(2.15rem, 3.7vw, 3.45rem);
@@ -254,7 +251,6 @@ a:focus-visible, button:focus-visible {
   line-height: 1.08;
 }
 .section-heading {
-  max-width: 920px;
   margin-bottom: 48px;
 }
 .section-heading > p:last-child {
@@ -317,13 +313,13 @@ a:focus-visible, button:focus-visible {
   background: transparent;
   cursor: zoom-in;
 }
-.figure-button img { border-radius: 8px; }
-.paper-figure .figure-button img {
+.figure-button img {
   width: auto;
   max-width: 100%;
   height: auto;
   margin-inline: auto;
   object-fit: contain;
+  border-radius: 8px;
 }
 .figure-button span {
   position: absolute;
@@ -531,7 +527,6 @@ figcaption {
 }
 
 .story-copy {
-  max-width: 800px;
   margin-bottom: 30px;
 }
 .story-copy h3 {
@@ -541,11 +536,12 @@ figcaption {
   line-height: 1.14;
 }
 .story-copy > p:last-child {
+  max-width: 800px;
   margin-bottom: 0;
   color: #343434;
   font-size: 1rem;
 }
-.story-copy-wide { max-width: 840px; }
+.story-copy-wide > p:last-child { max-width: 840px; }
 .story-row {
   display: grid;
   grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
