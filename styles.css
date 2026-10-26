@@ -318,6 +318,13 @@ a:focus-visible, button:focus-visible {
   cursor: zoom-in;
 }
 .figure-button img { border-radius: 8px; }
+.paper-figure .figure-button img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+}
 .figure-button span {
   position: absolute;
   right: 10px;
