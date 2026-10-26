@@ -28,6 +28,7 @@
       <a href="#problem">Problem</a>
       <a href="#representations">Representations</a>
       <a href="#findings">Findings</a>
+      <a href="#paper-figures">Paper Figures</a>
       <a href="#resources">Resources</a>
     </nav>
   </header>
@@ -81,7 +82,7 @@
         <div><strong>6</strong><span>vision-language models</span></div>
         <div><strong>2</strong><span>main video benchmarks</span></div>
         <div><strong>4</strong><span>reuse paths compared</span></div>
-        <div class="metric-accent"><strong>21–30%</strong><span>Text–Frames outcomes differ</span></div>
+        <div class="metric-accent"><strong>20–29%</strong><span>Text–Frames outcomes differ</span></div>
       </div>
     </section>
 
@@ -94,14 +95,14 @@
           which individual questions are correct. Gains and losses cancel in the mean.
         </p>
         <div class="callout">
-          <strong>21.1–29.6%</strong>
+          <strong>19.7–28.7%</strong>
           <span>of jointly valid questions change correctness between Text and Frames across the tested model–dataset pairs.</span>
         </div>
-        <p class="small-note">Visual and Prefix stay much closer to Frames: 0.0–2.3% and 0.3–2.8% differing outcomes, respectively.</p>
+        <p class="small-note">Visual and Prefix stay much closer to Frames: 0.0–1.9% and 0.3–1.8% differing outcomes, respectively.</p>
       </div>
       <figure class="paper-figure reveal">
-        <button class="figure-button" data-lightbox="assets/answer-changes.png" data-title="Per-question correctness changes">
-          <img src="assets/answer-changes.png" alt="Plot showing substantially more differing question outcomes for Text than for Visual or Prefix representations" loading="lazy">
+        <button class="figure-button" data-lightbox="assets/paper-fig1a.png" data-title="Per-question correctness changes">
+          <img src="assets/paper-fig1a.png" alt="Plot showing substantially more differing question outcomes for Text than for Visual or Prefix representations" loading="lazy">
           <span>Open figure</span>
         </button>
         <figcaption>Same selected frames, different saved representations.</figcaption>
@@ -156,7 +157,7 @@
           <span class="finding-number">01</span>
           <p class="finding-stat">Kilobytes</p>
           <h3>Text is tiny—but lossy.</h3>
-          <p>Text stores roughly 6.1–8.6 KiB per video, but fails the paper's answer-retention rule on the main workloads.</p>
+          <p>Text stores roughly 7.2–9.7 KiB per video, but fails the paper's answer-retention rule on the main workloads.</p>
         </article>
         <article class="finding-card finding-prefix reveal">
           <span class="finding-number">02</span>
@@ -200,7 +201,7 @@
         </p>
         <div class="selector-stats">
           <div><strong>+6.2–7.6 pp</strong><span>CG-Bench accuracy</span></div>
-          <div><strong>−0.1–1.5 pp</strong><span>HD-EPIC accuracy</span></div>
+          <div><strong>−1.5 to −0.1 pp</strong><span>HD-EPIC accuracy</span></div>
           <div><strong>1.63–5.59×</strong><span>total GPU time</span></div>
         </div>
       </div>
@@ -224,6 +225,142 @@
         <li><span>3</span><div><b>Track cumulative GPU work.</b><p>Include construction and every later question as the workload grows.</p></div></li>
         <li><span>4</span><div><b>Count retained bytes.</b><p>Separate computation saved from information stored.</p></div></li>
       </ol>
+    </section>
+
+    <section class="section paper-gallery-section" id="paper-figures">
+      <div class="section-heading reveal">
+        <p class="section-index">ALL MAIN-PAPER FIGURES</p>
+        <h2>The complete visual record.</h2>
+        <p>Every figure panel from the main paper appears below in paper order. Select any image to inspect it at full size.</p>
+      </div>
+
+      <div class="paper-gallery">
+        <article class="paper-figure-group reveal">
+          <div class="figure-group-heading">
+            <span>Figure 1</span>
+            <div>
+              <h3>Representation changes answers, cost, and storage.</h3>
+              <p>The four opening panels summarize answer changes, representation choice, retained size, and repeated-query cost.</p>
+            </div>
+          </div>
+          <div class="paper-panel-grid paper-panel-grid-two">
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig1a.png" data-title="Figure 1a · Correctness differences from Frames">
+                <img src="assets/paper-fig1a.png" alt="Plot comparing the percentage of questions with different correctness outcomes for Text, Visual, and Prefix State against Frames" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(a)</b> Correctness differences from Frames.</figcaption>
+            </figure>
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig1b.png" data-title="Figure 1b · Representation selected by evaluation">
+                <img src="assets/paper-fig1b.png" alt="Stacked bars showing which representation is selected by GPU time alone and after the answer-quality checks" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(b)</b> Representation selected by evaluation.</figcaption>
+            </figure>
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig1c.png" data-title="Figure 1c · Storage versus saved GPU work">
+                <img src="assets/paper-fig1c.png" alt="Scatter plot of retained bytes against GPU time saved for Text, Visual, and Prefix State across three model families" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(c)</b> Storage versus saved GPU work.</figcaption>
+            </figure>
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig1d.png" data-title="Figure 1d · Cost over repeated questions">
+                <img src="assets/paper-fig1d.png" alt="Line chart of cumulative GPU seconds as more questions are answered with Frames, Text, Visual, and Prefix State" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(d)</b> Cost over repeated questions.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="paper-figure-group reveal">
+          <div class="figure-group-heading">
+            <span>Figure 2</span>
+            <div>
+              <h3>The missing video file.</h3>
+              <p>All four paths see the same timestamps, but the Text record omits the file type needed by the later question.</p>
+            </div>
+          </div>
+          <figure class="paper-panel paper-panel-wide">
+            <button class="figure-button" data-lightbox="assets/paper-fig2.png" data-title="Figure 2 · The missing video file">
+              <img src="assets/paper-fig2.png" alt="Pipeline diagram showing one observed video saved as Frames, Visual state, Prefix State, or Text and then reused to answer a question about a visible video file" loading="lazy" decoding="async">
+              <span>Open figure</span>
+            </button>
+            <figcaption>Same observations, different saved evidence and reusable computation.</figcaption>
+          </figure>
+        </article>
+
+        <article class="paper-figure-group reveal">
+          <div class="figure-group-heading">
+            <span>Figure 3</span>
+            <div>
+              <h3>Many answers change even when mean accuracy changes little.</h3>
+              <p>Losses and gains are paired per model; the net accuracy change can stay near zero while the correct-answer set changes substantially.</p>
+            </div>
+          </div>
+          <div class="paper-panel-grid paper-panel-grid-two paper-panel-grid-transitions">
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig3a.png" data-title="Figure 3a · CG MQ-50 answer transitions">
+                <img src="assets/paper-fig3a.png" alt="Paired loss, gain, and net accuracy change for six models on the 300-question CG MQ-50 cohort" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(a)</b> CG MQ-50: 300 questions.</figcaption>
+            </figure>
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig3b.png" data-title="Figure 3b · HD-EPIC-51 answer transitions">
+                <img src="assets/paper-fig3b.png" alt="Paired loss, gain, and net accuracy change for six models on the 1,871-question HD-EPIC-51 cohort" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(b)</b> HD-EPIC-51: 1,871 questions.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="paper-figure-group reveal">
+          <div class="figure-group-heading">
+            <span>Figure 4</span>
+            <div>
+              <h3>Text-minus-Frames accuracy by question type.</h3>
+              <p>The lowest and highest model-averaged question types differ across CG-Bench and HD-EPIC.</p>
+            </div>
+          </div>
+          <figure class="paper-panel paper-panel-wide paper-panel-heatmap">
+            <button class="figure-button" data-lightbox="assets/paper-fig4.png" data-title="Figure 4 · Text-minus-Frames accuracy by question type">
+              <img src="assets/paper-fig4.png" alt="Two heatmaps showing Text-minus-Frames accuracy by question type and model for CG-Bench and HD-EPIC" loading="lazy" decoding="async">
+              <span>Open figure</span>
+            </button>
+            <figcaption>Positive values favor Text; dagger marks question types with fewer than 30 questions.</figcaption>
+          </figure>
+        </article>
+
+        <article class="paper-figure-group reveal">
+          <div class="figure-group-heading">
+            <span>Figure 5</span>
+            <div>
+              <h3>Storage, GPU saving, and accuracy.</h3>
+              <p>Position gives retained bytes and GPU saving; color gives the accuracy change against Frames.</p>
+            </div>
+          </div>
+          <div class="paper-panel-grid paper-panel-grid-two">
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig5a.png" data-title="Figure 5a · CG MQ-50 storage and GPU trade-off">
+                <img src="assets/paper-fig5a.png" alt="Scatter plot of retained bytes, GPU time saved, and accuracy change on CG MQ-50 for three profiled model families" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(a)</b> CG MQ-50, six questions.</figcaption>
+            </figure>
+            <figure class="paper-panel">
+              <button class="figure-button" data-lightbox="assets/paper-fig5b.png" data-title="Figure 5b · HD-EPIC-51 storage and GPU trade-off">
+                <img src="assets/paper-fig5b.png" alt="Scatter plot of retained bytes, GPU time saved, and accuracy change on all HD-EPIC-51 questions for three profiled model families" loading="lazy" decoding="async">
+                <span>Open panel</span>
+              </button>
+              <figcaption><b>(b)</b> HD-EPIC-51, all questions.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="section scope-section">

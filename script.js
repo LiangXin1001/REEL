@@ -12,8 +12,8 @@ const representationContent = {
     title: "Text writes a compact record.",
     description: "A separate writer model describes the selected frames without seeing later questions. Details omitted by the writer cannot be recovered.",
     compute: "Low answer-path cost",
-    storage: "About 6.1–8.6 KiB / video",
-    fidelity: "21.1–29.6% outcomes differ"
+    storage: "About 7.2–9.7 KiB / video",
+    fidelity: "19.7–28.7% outcomes differ"
   },
   visual: {
     kicker: "Reuse the vision tower",
@@ -21,7 +21,7 @@ const representationContent = {
     description: "Later questions skip visual encoding while the language-model path still runs for each question.",
     compute: "Model-dependent saving",
     storage: "Large intermediate tensors",
-    fidelity: "0.0–2.3% outcomes differ"
+    fidelity: "0.0–1.9% outcomes differ"
   },
   prefix: {
     kicker: "Reuse vision and shared prefill",
@@ -29,7 +29,7 @@ const representationContent = {
     description: "The saved state includes the visual representation and the language-model prefix used before question-specific decoding.",
     compute: "Lowest eligible in tested workloads",
     storage: "About 1.06–20.97 GiB / video",
-    fidelity: "0.3–2.8% outcomes differ"
+    fidelity: "0.3–1.8% outcomes differ"
   }
 };
 
